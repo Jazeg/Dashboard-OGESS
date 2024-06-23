@@ -1,0 +1,8 @@
+.custom-title {
+    font-family: 'Montserrat', sans-serif; /* Una fuente más elegante */
+    font-weight: 700; /* Negrita */
+    color: #363636; /* Un color oscuro pero no completamente negro */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
+    margin-bottom: 30px; /* Aumenta el espacio debajo del título */
+  }

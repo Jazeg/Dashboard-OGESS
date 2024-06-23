@@ -9,6 +9,7 @@ import { GeneralComponent } from './components/general/general.component';
 import { IndicadoresComponent } from './components/indicadores/indicadores.component';
 import { TableroMandoComponent } from './components/tablero-mando/tablero-mando.component';
 import { PerformansComponent } from './components/performans/performans.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PerformansComponent } from './components/performans/performans.componen
     GeneralComponent,
     IndicadoresComponent,
     TableroMandoComponent,
-    PerformansComponent
+    PerformansComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
