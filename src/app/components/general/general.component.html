@@ -1,6 +1,30 @@
 <div class="container is-fluid">
-    <h2 class="title is-2 mb-5 custom-title">Sección General</h2>
-    <div class="box">
-      <app-chart></app-chart>
+  <h2 class="title is-2 mb-5 has-text-centered custom-title">Sección General</h2>
+  
+  <div class="columns custom-margin">
+    <div class="column">
+      <div class="box">
+        <app-chart [chartData]="lineChartData" [chartOptions]="lineChartOptions" chartType="line"></app-chart>
+      </div>
     </div>
   </div>
+  <div class="columns custom-margin">
+    <div class="column">
+      <div class="box">
+        <app-chart [chartData]="stackedBarChartData" [chartOptions]="stackedBarChartOptions" chartType="bar"></app-chart>
+      </div>
+    </div>
+  </div>
+  <div class="columns is-multiline">
+    <div class="column is-half">
+      <div class="box chart-container">
+        <app-chart [chartData]="atendidosData" [chartOptions]="atendidosOptions" chartType="bar"></app-chart>
+      </div>
+    </div>
+    <div class="column is-half">
+      <div class="box chart-container">
+        <app-chart [chartData]="atencionesData" [chartOptions]="atencionesOptions" chartType="bar"></app-chart>
+      </div>
+    </div>
+  </div>
+</div>
