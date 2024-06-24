@@ -31,41 +31,6 @@ export class GeneralComponent {
     }
   };
 
-  stackedBarChartData = {
-    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [
-      {
-        label: 'Producto A',
-        data: [20, 30, 40, 50, 60],
-        backgroundColor: 'rgba(255, 99, 132, 0.8)',
-      },
-      {
-        label: 'Producto B',
-        data: [30, 40, 50, 60, 70],
-        backgroundColor: 'rgba(54, 162, 235, 0.8)',
-      },
-      {
-        label: 'Producto C',
-        data: [40, 50, 60, 70, 80],
-        backgroundColor: 'rgba(75, 192, 192, 0.8)',
-      },
-    ]
-  };
-
-  stackedBarChartOptions = {
-    responsive: true,
-    scales: {
-      x: { stacked: true },
-      y: { stacked: true }
-    },
-    plugins: {
-      title: {
-        display: true,
-        text: 'Ventas por Producto'
-      }
-    }
-  };
-
   atendidosData = {
     labels: ['I Trim', 'II Trim', 'III Trim', 'IV Trim', 'AÑO'],
     datasets: [{

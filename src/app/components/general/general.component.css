@@ -18,5 +18,7 @@
 
 .box {
   height: 100%; /* Esto asegurará que la caja ocupe toda la altura de la columna */
-  color: #ffffff;
+}
+.chart-container {
+  background-color: white; /* Fondo blanco para el contenedor del gráfico */
 }
