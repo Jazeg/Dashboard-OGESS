@@ -1,0 +1,22 @@
+.custom-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #363636;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+.chart-container {
+  margin-bottom: 2rem;
+  height: 400px; /* Ajusta esta altura según tus necesidades */
+}
+
+.column {
+  padding: 1rem; /* Esto añadirá espacio alrededor de cada columna */
+}
+
+.box {
+  height: 100%; /* Esto asegurará que la caja ocupe toda la altura de la columna */
+  color: #ffffff;
+}
