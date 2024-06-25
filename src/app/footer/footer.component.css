@@ -1,0 +1,28 @@
+:host {
+    display: block;
+    width: 100%;
+  }
+  
+  .footer {
+    background-color: #eff0f5; /* Color de fondo oscuro para coincidir con tu tema */
+    color: #0c0b0b; /* Texto blanco para contraste */
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    justify-content: center;
+    align-items: center;
+    height: 40px; /* Ajusta esta altura según tus necesidades */
+    font-size: 12px; /* Tamaño de fuente pequeño como en la imagen */
+  }
+  
+  .content {
+    text-align: center;
+  }
+  
+  /* Asegúrate de que el contenido principal no se superponga con el footer */
+  :host-context(.main-content) {
+    padding-bottom: 40px; /* Debe ser igual a la altura del footer */
+  }

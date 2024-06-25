@@ -10,6 +10,7 @@ import { IndicadoresComponent } from './components/indicadores/indicadores.compo
 import { TableroMandoComponent } from './components/tablero-mando/tablero-mando.component';
 import { PerformansComponent } from './components/performans/performans.component';
 import { ChartComponent } from './chart/chart.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ChartComponent } from './chart/chart.component';
     IndicadoresComponent,
     TableroMandoComponent,
     PerformansComponent,
-    ChartComponent
+    ChartComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
