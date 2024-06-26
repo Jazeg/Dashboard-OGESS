@@ -1,6 +1,67 @@
+<div class="container">
+  <div class="columns is-multiline">
+    <!-- Primer Trimestre -->
+    <div class="column is-one-fifth">
+      <div class="card custom-card has-background-primary">
+        <div class="card-content">
+          <p class="title is-4 has-text-white">85%</p>
+          <p class="subtitle is-6 has-text-white">Performance</p>
+          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Primer Trimestre</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segundo Trimestre -->
+    <div class="column is-one-fifth">
+      <div class="card custom-card has-background-info">
+        <div class="card-content">
+          <p class="title is-4 has-text-white">92%</p>
+          <p class="subtitle is-6 has-text-white">Performance</p>
+          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Segundo Trimestre</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tercer Trimestre -->
+    <div class="column is-one-fifth">
+      <div class="card custom-card has-background-warning">
+        <div class="card-content">
+          <p class="title is-4 has-text-white">88%</p>
+          <p class="subtitle is-6 has-text-white">Performance</p>
+          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Tercer Trimestre</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuarto Trimestre -->
+    <div class="column is-one-fifth">
+      <div class="card custom-card has-background-danger">
+        <div class="card-content">
+          <p class="title is-4 has-text-white">95%</p>
+          <p class="subtitle is-6 has-text-white">Performance</p>
+          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Cuarto Trimestre</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Año -->
+    <div class="column is-one-fifth">
+      <div class="card custom-card has-background-success">
+        <div class="card-content">
+          <p class="title is-4 has-text-white">90%</p>
+          <p class="subtitle is-6 has-text-white">Performance</p>
+          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Año</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="container is-fluid">
   <h2 class="title is-2 mb-5 has-text-centered custom-title">Sección General</h2>
   
+
   <div class="columns custom-margin">
     <div class="column">
       <div class="box">
@@ -8,6 +69,7 @@
       </div>
     </div>
   </div>
+  
   <div class="columns is-multiline">
     <div class="column is-half">
       <div class="box chart-container">
@@ -17,6 +79,19 @@
     <div class="column is-half">
       <div class="box chart-container">
         <app-chart [chartData]="atencionesData" [chartOptions]="atencionesOptions" chartType="bar"></app-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="column is-half">
+      <div class="box chart-container">
+        <app-chart [chartData]="extensionUsoData" [chartOptions]="extensionUsoOptions" chartType="bar"></app-chart>
+      </div>
+    </div>
+    <div class="column is-half">
+      <div class="box chart-container">
+        <app-chart [chartData]="intensidadUsoData" [chartOptions]="intensidadUsoOptions" chartType="bar"></app-chart>
       </div>
     </div>
   </div>
