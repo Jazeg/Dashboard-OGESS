@@ -1,38 +1,38 @@
-<aside class="sidebar">
-    <div class="sidebar-header">
-      <img src="assets/img/logo-ogess.jpeg" alt="Logo" class="logo">
-      <span class="brand-name">OGESS Alto Mayo</span>
-    </div>
-    
-    <nav class="menu">
-        <ul>
-          <li>
-            <a routerLink="/dashboard" routerLinkActive="active">
-              <i class="fas fa-home"></i> <!-- Icono de casa para "General" -->
-              <span>General</span>
-              <span class="tag">NEW</span>
-            </a>
-          </li>
-          <li class="menu-label">THEME</li>
-          <li>
-            <a routerLink="/indicadores" routerLinkActive="active">
-              <i class="fas fa-chart-line"></i> <!-- Icono de gráfico para "Indicadores" -->
-              <span>Indicadores</span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="/tablero-mando" routerLinkActive="active">
-              <i class="fas fa-tachometer-alt"></i> <!-- Icono de tablero para "Tablero de Mando" -->
-              <span>Tablero de Mando</span>
-            </a>
-          </li>
-          <li class="menu-label">Ajustes</li>
-          <li>
-            <a routerLink="/performans" routerLinkActive="active">
-              <i class="fas fa-cogs"></i> <!-- Icono de engranajes para "Performans" -->
-              <span>Performans</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-  </aside>
+<aside class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="sidebar-header">
+    <img src="assets/img/logo-ogess.jpeg" alt="Logo" class="logo">
+    <span class="brand-name" *ngIf="!isCollapsed">OGESS Alto Mayo</span>
+  </div>
+  
+  <nav class="menu">
+    <ul>
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <i class="fas fa-home"></i>
+          <span *ngIf="!isCollapsed">General</span>
+          <span class="tag" *ngIf="!isCollapsed">NEW</span>
+        </a>
+      </li>
+      <li class="menu-label" *ngIf="!isCollapsed">THEME</li>
+      <li>
+        <a routerLink="/indicadores" routerLinkActive="active">
+          <i class="fas fa-chart-line"></i>
+          <span *ngIf="!isCollapsed">Indicadores</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/tablero-mando" routerLinkActive="active">
+          <i class="fas fa-tachometer-alt"></i>
+          <span *ngIf="!isCollapsed">Tablero de Mando</span>
+        </a>
+      </li>
+      <li class="menu-label" *ngIf="!isCollapsed">Ajustes</li>
+      <li>
+        <a routerLink="/performans" routerLinkActive="active">
+          <i class="fas fa-cogs"></i>
+          <span *ngIf="!isCollapsed">Performans</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
