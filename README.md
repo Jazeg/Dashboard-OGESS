@@ -1,4 +1,4 @@
 # Dashboard OGESS
 Rama de vistas
->>>>>>> Esperando Json :'b
+> Esperando Json :'b
 
