@@ -1,57 +1,28 @@
-<div class="container">
+<div class="pie-charts-container">
   <div class="columns is-multiline">
-    <!-- Primer Trimestre -->
     <div class="column is-one-fifth">
-      <div class="card custom-card has-background-primary">
-        <div class="card-content">
-          <p class="title is-4 has-text-white">85%</p>
-          <p class="subtitle is-6 has-text-white">Performance</p>
-          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Primer Trimestre</p>
-        </div>
+      <div class="box chart-container">
+        <app-chart [chartData]="pieChart1Data" [chartOptions]="pieChartOptions1" chartType="pie"></app-chart>
       </div>
     </div>
-
-    <!-- Segundo Trimestre -->
     <div class="column is-one-fifth">
-      <div class="card custom-card has-background-info">
-        <div class="card-content">
-          <p class="title is-4 has-text-white">92%</p>
-          <p class="subtitle is-6 has-text-white">Performance</p>
-          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Segundo Trimestre</p>
-        </div>
+      <div class="box chart-container">
+        <app-chart [chartData]="pieChart2Data" [chartOptions]="pieChartOptions2" chartType="pie"></app-chart>
       </div>
     </div>
-
-    <!-- Tercer Trimestre -->
     <div class="column is-one-fifth">
-      <div class="card custom-card has-background-warning">
-        <div class="card-content">
-          <p class="title is-4 has-text-white">88%</p>
-          <p class="subtitle is-6 has-text-white">Performance</p>
-          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Tercer Trimestre</p>
-        </div>
+      <div class="box chart-container">
+        <app-chart [chartData]="pieChart3Data" [chartOptions]="pieChartOptions3" chartType="pie"></app-chart>
       </div>
     </div>
-
-    <!-- Cuarto Trimestre -->
     <div class="column is-one-fifth">
-      <div class="card custom-card has-background-danger">
-        <div class="card-content">
-          <p class="title is-4 has-text-white">95%</p>
-          <p class="subtitle is-6 has-text-white">Performance</p>
-          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Cuarto Trimestre</p>
-        </div>
+      <div class="box chart-container">
+        <app-chart [chartData]="pieChart4Data" [chartOptions]="pieChartOptions4" chartType="pie"></app-chart>
       </div>
     </div>
-
-    <!-- Año -->
     <div class="column is-one-fifth">
-      <div class="card custom-card has-background-success">
-        <div class="card-content">
-          <p class="title is-4 has-text-white">90%</p>
-          <p class="subtitle is-6 has-text-white">Performance</p>
-          <p class="is-size-7 has-text-white mt-4">Performance de Indicadores Año</p>
-        </div>
+      <div class="box chart-container">
+        <app-chart [chartData]="pieChart5Data" [chartOptions]="pieChartOptions5" chartType="pie"></app-chart>
       </div>
     </div>
   </div>

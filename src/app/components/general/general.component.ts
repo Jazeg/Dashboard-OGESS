@@ -7,6 +7,74 @@ import { Component } from '@angular/core';
 })
 export class GeneralComponent {
 
+  commonColors = ['#4CAF50', '#FFEB3B', '#F44336']; 
+
+  pieChart1Data = {
+    labels: ['Adecuado', 'Regular', 'Deficiente'],
+    datasets: [{
+      data: [60, 30, 10], 
+      backgroundColor: this.commonColors
+    }]
+  };
+
+  pieChart2Data = {
+    labels: ['Adecuado', 'Regular', 'Deficiente'],
+    datasets: [{
+      data: [50, 40, 10], 
+      backgroundColor: this.commonColors
+    }]
+  };
+
+  pieChart3Data = {
+    labels: ['Adecuado', 'Regular', 'Deficiente'],
+    datasets: [{
+      data: [70, 20, 10], 
+      backgroundColor: this.commonColors
+    }]
+  };
+
+  pieChart4Data = {
+    labels: ['Adecuado', 'Regular', 'Deficiente'],
+    datasets: [{
+      data: [55, 35, 10], 
+      backgroundColor: this.commonColors
+    }]
+  };
+
+  pieChart5Data = {
+    labels: ['Adecuado', 'Regular', 'Deficiente'],
+    datasets: [{
+      data: [65, 25, 10], 
+      backgroundColor: this.commonColors
+    }]
+  };
+
+  pieChartOptions1 = this.createPieChartOptions("PRIMER TRIMESTRE");
+  pieChartOptions2 = this.createPieChartOptions("SEGUNDO TRIMESTRE");
+  pieChartOptions3 = this.createPieChartOptions("TERCER TRIMESTRE");
+  pieChartOptions4 = this.createPieChartOptions("CUARTO TRIMESTRE");
+  pieChartOptions5 = this.createPieChartOptions("AÑO");
+
+  private createPieChartOptions(title: string) {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom' as const,
+          labels: {
+            font: { size: 10 }
+          }
+        },
+        title: {
+          display: true,
+          text: title,
+          font: { size: 12, weight: 'bold' },
+          padding: { top: 60, bottom: 5 }
+        }
+      }
+    };
+  }
 
   //dato en gráfico de lineas 
   lineChartData = {
