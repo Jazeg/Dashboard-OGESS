@@ -10,6 +10,7 @@ import { IndicadoresComponent } from './components/indicadores/indicadores.compo
 import { TableroMandoComponent } from './components/tablero-mando/tablero-mando.component';
 import { PerformansComponent } from './components/performans/performans.component';
 import { ChartComponent } from './chart/chart.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ChartComponent } from './chart/chart.component';
     TableroMandoComponent,
     PerformansComponent,
     ChartComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
