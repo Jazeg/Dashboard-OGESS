@@ -1,13 +1,30 @@
-<div class="custom-table-container">
-  <table class="custom-table">
-    <thead>
-      <tr>
-        <th>Componentes</th>
-        <th>Indicador</th>
-        <th>Verificador</th>
-        <th>Rangos de cumplimiento</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</div>
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th>Componente</th>
+      <th>#</th>
+      <th>Indicador</th>
+      <th>Verificador</th>
+      <th>Parámetro</th>
+      <th>Valor Adecuado</th>
+      <th>Valor Inicial</th>
+      <th>Valor Fin</th>
+      <th>Valor Deficiente</th>
+      <th>Parámetro</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.componente }}</td>
+      <td>{{ item.num }}</td>
+      <td>{{ item.Indicador }}</td>
+      <td>{{ item.Verificador }}</td>
+      <td>{{ item.Param1 }}</td>
+      <td>{{ item.Va_ade }}</td>
+      <td>{{ item.Va_ini }}</td>
+      <td>{{ item.Valo_fin }}</td>
+      <td>{{ item.Valo_de }}</td>
+      <td>{{ item.Param2 }}</td>
+    </tr>
+  </tbody>
+</table>

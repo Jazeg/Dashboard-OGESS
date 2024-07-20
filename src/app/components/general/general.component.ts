@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class GeneralComponent {
 
-  commonColors = ['#4CAF50', '#FFEB3B', '#F44336']; 
+  commonColors = ['#49ce89', '#f26645', '#ec3b5f']; 
 
   pieChart1Data = {
     labels: ['Adecuado', 'Regular', 'Deficiente'],

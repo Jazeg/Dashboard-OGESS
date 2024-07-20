@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'tablero-mando', component: TableroMandoComponent },
   { path: 'performans', component: PerformansComponent },
   { path: '**', component: PageNotFoundComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Ruta por defecto
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, 
 ];
 
 @NgModule({
