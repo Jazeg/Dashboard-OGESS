@@ -1,4 +1,3 @@
-// data.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,12 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
+  private apiUrl = '/api'; 
 
-  private apiUrl = 'api-backend';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getData(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/usuario`);
   }
 }

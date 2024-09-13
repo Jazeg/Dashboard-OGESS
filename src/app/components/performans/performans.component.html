@@ -1,1 +1,42 @@
-<p>performans works!</p>
+<h2>Lista de Usuarios</h2>
+
+<div *ngIf="error" class="error-message">
+  {{ error }}
+</div>
+
+<div *ngIf="users.length === 0 && !error" class="loading-message">
+  Cargando usuarios...
+</div>
+
+<table *ngIf="users.length > 0" class="user-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Usuario</th>
+      <th>Correo</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Fecha de Registro</th>
+      <th>Género</th>
+      <th>Rol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id_usuario }}</td>
+      <td>{{ user.nombre }}</td>
+      <td>{{ user.apellido }}</td>
+      <td>{{ user.nombre_usuario }}</td>
+      <td>{{ user.correo }}</td>
+      <td>{{ user.telefono }}</td>
+      <td>{{ user.direccion }}</td>
+      <td>{{ user.fecha_nacimiento }}</td>
+      <td>{{ user.fecha_registro }}</td>
+      <td>{{ user.genero }}</td>
+      <td>{{ user.rol }}</td>
+    </tr>
+  </tbody>
+</table>
