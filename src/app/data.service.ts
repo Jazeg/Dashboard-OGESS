@@ -13,4 +13,7 @@ export class DataService {
   getAllUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/usuario`);
   }
+  uploadFiles(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/upload_nominal/`, formData);
+  }
 }
