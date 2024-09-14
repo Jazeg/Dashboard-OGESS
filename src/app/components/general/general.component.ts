@@ -30,10 +30,17 @@ export class GeneralComponent {
       
       // Crear un FormData object para enviar los archivos
       const formData = new FormData();
+      
+      // Cambio clave: usar 'file' como nombre del campo para todos los archivos
       this.uploadedFiles.forEach((file, index) => {
-        formData.append(`file${index + 1}`, file, file.name);
+        formData.append('file', file, file.name);
       });
-
+  
+      // Log para verificar el contenido del FormData
+      formData.forEach((value, key) => {
+        console.log(key, value);
+      });
+  
       // Llamar al método de tu servicio de datos para subir archivos
       this.dataService.uploadFiles(formData).subscribe(
         response => {
@@ -44,10 +51,15 @@ export class GeneralComponent {
         },
         error => {
           console.error('Error uploading files', error);
-          alert('Error al cargar los archivos');
+          if (error.error && error.error.detail) {
+            console.error('Error details:', error.error.detail);
+          }
+          alert('Error al cargar los archivos: ' + (error.error?.detail?.[0]?.msg || error.message));
           this.isUploading = false;
         }
       );
+    } else {
+      alert('Por favor, selecciona entre 1 y 2 archivos.');
     }
   }
 }
