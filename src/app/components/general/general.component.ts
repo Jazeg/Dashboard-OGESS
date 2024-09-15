@@ -1,15 +1,79 @@
-import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
+
+interface IndicadorData {
+  id: number;
+  indicador: string;
+  numerador: string;
+  denominador: string;
+  verificador: string;
+  rangoCumplimiento: string;
+}
+
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.css']
 })
-export class GeneralComponent {
+
+export class GeneralComponent implements OnInit {
   uploadedFiles: File[] = [];
   isUploading: boolean = false;
+  indicadores: IndicadorData[] = [];
+  anioEspecifico: number = new Date().getFullYear(); 
 
   constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.initializeIndicadores();
+  }
+  initializeIndicadores() {
+    this.indicadores = [
+      {
+        id: 8,
+        indicador: 'RIESGO DE ENFERMAR POR DEPRESION, ANSIEDAD y CONDUCTA SUICIDA',
+        numerador: 'N° de Casos de Depresión, Ansiedad y Conducta Suicida',
+        denominador: 'Poblacion Total x 1000',
+        verificador: 'HIS',
+        rangoCumplimiento: 'No disponible'
+      }
+    ];
+  }
+
+  consultarIndicador() {
+    if (!this.anioEspecifico) {
+      alert('Por favor, ingrese un año válido');
+      return;
+    }
+
+    this.indicadores[0].rangoCumplimiento = 'Consultando...';
+    
+    this.dataService.getIndicador8(this.anioEspecifico.toString()).subscribe(
+      (data: { resultado_final: number }) => {
+        this.indicadores[0].rangoCumplimiento = data.resultado_final.toFixed(2); // Redondeamos a 2 decimales
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error al obtener rangos de cumplimiento', error);
+        this.indicadores[0].rangoCumplimiento = 'Error al consultar';
+      }
+    );
+  }
+
+  getRangoClass(valor: string): string {
+    const numericValue = parseFloat(valor);
+    if (isNaN(numericValue)) {
+      return '';
+    }
+    if (numericValue <= 5.00) {
+      return 'rango-bajo';
+    } else if (numericValue <= 9.99) {
+      return 'rango-medio';
+    } else {
+      return 'rango-alto';
+    }
+  }
+
 
   onFileSelected(event: any) {
     const files: FileList = event.target.files;

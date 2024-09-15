@@ -3,11 +3,53 @@
     <div class="card">
       <div class="card-content">
         <p class="title is-4">Estado del Indicador</p>
-        <div class="chart-container">
+        <div class="field has-addons">
+          <div class="control">
+            <input
+              class="input"
+              type="number"
+              [(ngModel)]="anioEspecifico"
+              placeholder="Ingrese el año"
+            />
+          </div>
+          <div class="control">
+            <button class="button is-primary" (click)="consultarIndicador()">
+              Consultar
+            </button>
+          </div>
+        </div>
+        <div class="table-container mt-3">
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>INDICADOR</th>
+                <th>NUMERADOR</th>
+                <th>DENOMINADOR</th>
+                <th>VERIFICADOR</th>
+                <th>RANGOS DE CUMPLIMIENTO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let indicador of indicadores">
+                <td>{{ indicador.id }}</td>
+                <td>{{ indicador.indicador }}</td>
+                <td>{{ indicador.numerador }}</td>
+                <td>{{ indicador.denominador }}</td>
+                <td>{{ indicador.verificador }}</td>
+                <td>
+                  <span [class]="'rango-cumplimiento ' + getRangoClass(indicador.rangoCumplimiento)">
+                    {{ indicador.rangoCumplimiento }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
+
   <div class="column">
     <div class="card">
       <div class="card-content">
@@ -15,18 +57,24 @@
         <div class="file-upload-container">
           <div class="file is-centered is-boxed">
             <label class="file-label">
-              <input class="file-input" type="file" (change)="onFileSelected($event)" [disabled]="uploadedFiles.length >= 3" multiple>
+              <input
+                class="file-input"
+                type="file"
+                (change)="onFileSelected($event)"
+                [disabled]="uploadedFiles.length >= 3"
+                multiple
+              />
               <span class="file-cta">
                 <span class="file-icon">
                   <i class="fas fa-upload"></i>
                 </span>
-                <span class="file-label">
-                  Click para seleccionar
-                </span>
+                <span class="file-label"> Click para seleccionar </span>
               </span>
             </label>
           </div>
-          <p *ngIf="uploadedFiles.length >= 2" class="file-limit-message">Máximo 2 archivos permitidos</p>
+          <p *ngIf="uploadedFiles.length >= 2" class="file-limit-message">
+            Máximo 2 archivos permitidos
+          </p>
         </div>
         <div class="uploaded-files-list" *ngIf="uploadedFiles.length > 0">
           <ul>
@@ -41,11 +89,17 @@
           </ul>
         </div>
         <div class="upload-button-container">
-          <button class="button is-primary is-fullwidth" 
-          [disabled]="uploadedFiles.length === 0 || uploadedFiles.length > 2 || isUploading"
-          (click)="uploadFiles()">
-    {{ isUploading ? 'Cargando...' : 'Cargar Archivos' }}
-  </button>  
+          <button
+            class="button is-primary is-fullwidth"
+            [disabled]="
+              uploadedFiles.length === 0 ||
+              uploadedFiles.length > 2 ||
+              isUploading
+            "
+            (click)="uploadFiles()"
+          >
+            {{ isUploading ? "Cargando..." : "Cargar Archivos" }}
+          </button>
         </div>
       </div>
     </div>

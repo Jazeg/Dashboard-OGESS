@@ -161,3 +161,122 @@ p, span, .file-label {
   max-height: auto; /* Altura máxima, ajusta según necesites */
 }
 
+/* TABLA DE DATOS */
+/* Estilos base de la tabla */
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 20px 0;
+  font-size: 1em;
+  font-family: 'Arial', sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  --bulma-table-background-color: transparent;
+  background-color: transparent;
+}
+
+/* Sobrescribir estilos de Bulma */
+.custom-table.table {
+  --bulma-table-background-color: transparent;
+  --bulma-table-color: inherit;
+  background-color: transparent;
+  color: inherit;
+}
+
+.custom-table.table td,
+.custom-table.table th {
+  border: none;
+  border-style: none !important;
+  padding: 12px 15px;
+  color: inherit;
+}
+
+/* Estilos del encabezado */
+.custom-table thead tr {
+  background-color: #f2f2f2;
+  color: #333;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Estilos de las filas del cuerpo */
+.custom-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: #ffffff;
+}
+
+.custom-table tbody tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:last-of-type {
+  border-bottom: 2px solid #f2f2f2;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Asegurar color de texto en encabezados */
+.custom-table thead tr th {
+  color: #333 !important;
+}
+
+/* Ajustes de espaciado */
+.custom-table th:first-child,
+.custom-table td:first-child {
+  padding-left: 20px;
+}
+
+.custom-table th:last-child,
+.custom-table td:last-child {
+  padding-right: 20px;
+}
+
+.custom-table td {
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* Contenedor con scroll horizontal */
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+/* Diseño responsive */
+@media screen and (max-width: 600px) {
+  .custom-table {
+    font-size: 0.9em;
+  }
+  
+  .custom-table td,
+  .custom-table th {
+    padding: 10px 12px;
+  }
+}
+
+.rango-cumplimiento {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.rango-bajo {
+  background-color: #e8f5e9;
+  color: #006806;
+}
+
+.rango-medio {
+  background-color: #fff3e0;
+  color: #f57c00;
+}
+
+.rango-alto {
+  background-color: #e3f2fd;
+  color: #d21919;
+}
