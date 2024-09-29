@@ -13,6 +13,7 @@ import { TableroMandoComponent } from './components/tablero-mando/tablero-mando.
 import { PerformansComponent } from './components/performans/performans.component';
 import { ChartComponent } from './chart/chart.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

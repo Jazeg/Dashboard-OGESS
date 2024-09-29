@@ -1,39 +1,36 @@
-.custom-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 1em;
-  font-family: 'Arial', sans-serif;
-  min-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+.card {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-.custom-table thead tr {
-  background-color: #f2f2f2; /* Color de fondo del encabezado */
-  color: #333; /* Color de las letras del encabezado */
-  text-align: left;
+.card:hover {
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
+}
+
+.card-header-title {
   font-weight: bold;
 }
 
-.custom-table th,
-.custom-table td {
-  padding: 12px 15px;
+.modal-card-title {
+  font-weight: bold;
 }
 
-.custom-table tbody tr {
-  border-bottom: 1px solid #dddddd;
+.button.is-danger {
+  margin-left: 0.5rem;
 }
 
-.custom-table tbody tr:nth-of-type(even) {
-  background-color: #f9f9f9; 
+.mt-6 {
+  margin-top: 3rem !important;
 }
 
-
-.custom-table tbody tr:hover {
-  background-color: #f1f1f1; 
+.mb-4 {
+  margin-bottom: 1.5rem !important;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
 
-.custom-table thead tr th {
-  color: #333 !important; 
+.ml-2 {
+  margin-left: 0.5rem !important;
 }

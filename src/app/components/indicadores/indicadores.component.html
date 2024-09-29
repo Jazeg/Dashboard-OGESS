@@ -1,27 +1,183 @@
-<table class="custom-table">
-  <thead>
-    <tr>
-      <th>Componente</th>
-      <th>#</th>
-      <th>Indicador</th>
-      <th>Verificador</th>
-      <th>Valor Adecuado</th>
-      <th>Valor Inicial</th>
-      <th>Valor Fin</th>
-      <th>Valor Deficiente</th>
-      <th>Acción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of items">
-      <td>{{ item.componente }}</td>
-      <td>{{ item.num }}</td>
-      <td>{{ item.Indicador }}</td>
-      <td>{{ item.Verificador }}</td>
-      <td>{{ item.Va_ade }}</td>
-      <td>{{ item.Va_ini }}</td>
-      <td>{{ item.Valo_fin }}</td>
-      <td>{{ item.Valo_de }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <!-- Botón para crear componente -->
+  <button class="button is-primary mb-4" (click)="openComponenteModal()">Crear Componente</button>
+
+  <!-- Lista de Componentes -->
+  <div class="columns is-multiline">
+    <div *ngFor="let componente of componentes" class="column is-one-third">
+      <div class="card" (click)="seleccionarComponente(componente)">
+        <header class="card-header">
+          <p class="card-header-title">{{ componente.nivel_uno }}</p>
+        </header>
+        <div class="card-content">
+          <p><strong>Nivel 2:</strong> {{ componente.nivel_dos }}</p>
+          <p><strong>Nivel 3:</strong> {{ componente.nivel_tres }}</p>
+        </div>
+        <footer class="card-footer">
+          <a class="card-footer-item" (click)="eliminarComponente(componente); $event.stopPropagation()">Eliminar</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detalle del Componente Seleccionado -->
+  <div *ngIf="componenteSeleccionado" class="mt-6">
+    <h2 class="title is-4">{{ componenteSeleccionado.nivel_uno }}</h2>
+    <h3 class="subtitle is-5">{{ componenteSeleccionado.nivel_dos }} - {{ componenteSeleccionado.nivel_tres }}</h3>
+    
+    <button class="button is-info mb-4" (click)="openIndicadorModal()">Agregar Indicador</button>
+
+    <!-- Lista de Indicadores -->
+    <div *ngIf="componenteSeleccionado.indicadores && componenteSeleccionado.indicadores.length > 0">
+      <h4 class="title is-5">Indicadores:</h4>
+      <ul>
+        <li *ngFor="let indicador of componenteSeleccionado.indicadores" class="mb-2">
+          <strong>{{ indicador.nombre_indicador }}</strong> ({{ indicador.numero_indicador }})
+          <br>
+          Numerador: {{ indicador.numerador }}
+          <br>
+          Denominador: {{ indicador.denominador }}
+          <br>
+          Estado: {{ indicador.estado ? 'Activo' : 'Inactivo' }}
+          <button class="button is-small is-danger ml-2" (click)="eliminarIndicador(indicador)">Eliminar</button>
+        </li>
+      </ul>
+    </div>
+    <p *ngIf="!componenteSeleccionado.indicadores || componenteSeleccionado.indicadores.length === 0">
+      No hay indicadores asociados a este componente.
+    </p>
+  </div>
+
+  <!-- Modal para crear componente -->
+  <div class="modal" [ngClass]="{'is-active': showComponenteModal}">
+    <div class="modal-background" (click)="closeComponenteModal()"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Crear Componente</p>
+        <button class="delete" aria-label="close" (click)="closeComponenteModal()"></button>
+      </header>
+      <section class="modal-card-body">
+        <form [formGroup]="componenteForm" (ngSubmit)="crearComponente()">
+          <div class="field">
+            <label class="label">Nivel Uno</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="nivel_uno" placeholder="Nivel Uno">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Nivel Dos</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="nivel_dos" placeholder="Nivel Dos">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Nivel Tres</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="nivel_tres" placeholder="Nivel Tres">
+            </div>
+          </div>
+        </form>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" (click)="crearComponente()">Crear Componente</button>
+        <button class="button" (click)="closeComponenteModal()">Cancelar</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal para crear indicador -->
+  <div class="modal" [ngClass]="{'is-active': showIndicadorModal}">
+    <div class="modal-background" (click)="closeIndicadorModal()"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Crear Indicador</p>
+        <button class="delete" aria-label="close" (click)="closeIndicadorModal()"></button>
+      </header>
+      <section class="modal-card-body">
+        <form [formGroup]="indicadorForm" (ngSubmit)="crearIndicador()">
+          <div class="field">
+            <label class="label">Número de Indicador</label>
+            <div class="control">
+              <input class="input" type="number" formControlName="numero_indicador" placeholder="Número de Indicador">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Nombre del Indicador</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="nombre_indicador" placeholder="Nombre del Indicador">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Numerador</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="numerador" placeholder="Numerador">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Denominador</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="denominador" placeholder="Denominador">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Verificador</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="verificador" placeholder="Verificador">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Parámetro Adecuado</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="param_adec" placeholder="Parámetro Adecuado">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Valor Adecuado</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="valor_adec" placeholder="Valor Adecuado">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Valor Regular Inicial</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="valor_regul_ini" placeholder="Valor Regular Inicial">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Valor Regular Final</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="valor_regul_fin" placeholder="Valor Regular Final">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Valor Deficiente</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="valor_defic" placeholder="Valor Deficiente">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Parámetro Deficiente</label>
+            <div class="control">
+              <input class="input" type="text" formControlName="param_defic" placeholder="Parámetro Deficiente">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Estado</label>
+            <div class="control">
+              <div class="select">
+                <select formControlName="estado">
+                  <option [ngValue]="true">Activo</option>
+                  <option [ngValue]="false">Inactivo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" (click)="crearIndicador()">Crear Indicador</button>
+        <button class="button" (click)="closeIndicadorModal()">Cancelar</button>
+      </footer>
+    </div>
+  </div>
+</div>

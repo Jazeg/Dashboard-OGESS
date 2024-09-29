@@ -22,8 +22,18 @@ export class GeneralComponent implements OnInit {
   isUploading: boolean = false;
   indicadores: IndicadorData[] = [];
   anioEspecifico: number = new Date().getFullYear(); 
+  isModalActive = false;
 
   constructor(private dataService: DataService) {}
+
+
+  openModal() {
+    this.isModalActive = true;
+  }
+
+  closeModal() {
+    this.isModalActive = false;
+  }
 
   ngOnInit() {
     this.initializeIndicadores();

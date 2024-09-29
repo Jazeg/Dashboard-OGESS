@@ -122,6 +122,10 @@ p, span, .file-label {
   cursor: not-allowed;
 }
 
+/* Botón de importación */
+
+
+
 /* Estilos generales */
 .columns {
   margin-top: 1rem;
