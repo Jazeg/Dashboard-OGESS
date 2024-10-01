@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';  
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +14,6 @@ import { TableroMandoComponent } from './components/tablero-mando/tablero-mando.
 import { PerformansComponent } from './components/performans/performans.component';
 import { ChartComponent } from './chart/chart.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ReactiveFormsModule } from '@angular/forms'; 
-
 
 @NgModule({
   declarations: [
@@ -30,10 +29,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    CommonModule,  
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,7 @@
-<div class="container">
-  <!-- Botón para crear componente -->
+<!-- Sección de Componentes -->
+<section class="componentes-section">
   <button class="button is-primary mb-4" (click)="openComponenteModal()">Crear Componente</button>
 
-  <!-- Lista de Componentes -->
   <div class="columns is-multiline">
     <div *ngFor="let componente of componentes" class="column is-one-third">
       <div class="card" (click)="seleccionarComponente(componente)">
@@ -19,34 +18,67 @@
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Detalle del Componente Seleccionado -->
-  <div *ngIf="componenteSeleccionado" class="mt-6">
-    <h2 class="title is-4">{{ componenteSeleccionado.nivel_uno }}</h2>
-    <h3 class="subtitle is-5">{{ componenteSeleccionado.nivel_dos }} - {{ componenteSeleccionado.nivel_tres }}</h3>
-    
-    <button class="button is-info mb-4" (click)="openIndicadorModal()">Agregar Indicador</button>
+<!-- Sección de Detalle del Componente Seleccionado -->
+<section *ngIf="componenteSeleccionado" class="componente-detalle mt-6">
+  <h2 class="title is-4">{{ componenteSeleccionado.nivel_uno }}</h2>
+  <h3 class="subtitle is-5">{{ componenteSeleccionado.nivel_dos }} - {{ componenteSeleccionado.nivel_tres }}</h3>
+  
+  <button class="button is-info mb-4" (click)="openIndicadorModal()">Agregar Indicador</button>
 
-    <!-- Lista de Indicadores -->
-    <div *ngIf="componenteSeleccionado.indicadores && componenteSeleccionado.indicadores.length > 0">
-      <h4 class="title is-5">Indicadores:</h4>
-      <ul>
-        <li *ngFor="let indicador of componenteSeleccionado.indicadores" class="mb-2">
-          <strong>{{ indicador.nombre_indicador }}</strong> ({{ indicador.numero_indicador }})
-          <br>
-          Numerador: {{ indicador.numerador }}
-          <br>
-          Denominador: {{ indicador.denominador }}
-          <br>
-          Estado: {{ indicador.estado ? 'Activo' : 'Inactivo' }}
-          <button class="button is-small is-danger ml-2" (click)="eliminarIndicador(indicador)">Eliminar</button>
-        </li>
-      </ul>
+  <!-- Lista de Indicadores -->
+  <div *ngIf="componenteSeleccionado.indicadores && componenteSeleccionado.indicadores.length > 0">
+    <h4 class="title is-5">Indicadores:</h4>
+    <div class="table-container">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Indicador</th>
+            <th>Numerador</th>
+            <th>Denominador</th>
+            <th>Verificador</th>
+            <th>Parámetro Adecuado</th>
+            <th>Valor Adecuado</th>
+            <th>Valor Regular Inicial</th>
+            <th>Valor Regular Final</th>
+            <th>Valor Deficiente</th>
+            <th>Parámetro Deficiente</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let indicador of componenteSeleccionado.indicadores">
+            <td>{{ indicador.numero_indicador }}</td>
+            <td>{{ indicador.nombre_indicador }}</td>
+            <td>{{ indicador.numerador }}</td>
+            <td>{{ indicador.denominador }}</td>
+            <td>{{ indicador.verificador }}</td>
+            <td>{{ indicador.param_adec }}</td>
+            <td>{{ indicador.valor_adec }}</td>
+            <td>{{ indicador.valor_regul_ini }}</td>
+            <td>{{ indicador.valor_regul_fin }}</td>
+            <td>{{ indicador.valor_defic }}</td>
+            <td>{{ indicador.param_defic }}</td>
+            <td>
+              <span class="estado-tag" [ngClass]="{'activo': indicador.estado, 'inactivo': !indicador.estado}">
+                {{ indicador.estado ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+            <td>
+              <button class="button is-small is-danger" (click)="eliminarIndicador(indicador)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <p *ngIf="!componenteSeleccionado.indicadores || componenteSeleccionado.indicadores.length === 0">
-      No hay indicadores asociados a este componente.
-    </p>
   </div>
+  <p *ngIf="!componenteSeleccionado.indicadores || componenteSeleccionado.indicadores.length === 0">
+    No hay indicadores asociados a este componente.
+  </p>
+</section>
 
   <!-- Modal para crear componente -->
   <div class="modal" [ngClass]="{'is-active': showComponenteModal}">
@@ -180,4 +212,3 @@
       </footer>
     </div>
   </div>
-</div>

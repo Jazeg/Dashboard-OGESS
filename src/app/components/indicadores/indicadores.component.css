@@ -1,3 +1,4 @@
+/* Estilos existentes */
 .card {
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
@@ -19,18 +20,78 @@
   margin-left: 0.5rem;
 }
 
-.mt-6 {
-  margin-top: 3rem !important;
+
+/* Nuevos estilos para la tabla */
+
+:host {
+  display: block;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.mb-4 {
-  margin-bottom: 1.5rem !important;
+.componentes-section,
+.componente-detalle {
+  width: 100%;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem !important;
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 
-.ml-2 {
-  margin-left: 0.5rem !important;
+.user-table {
+  width: 100%;
+  min-width: 100%;
+}
+.user-table thead tr {
+  background-color: #f2f2f2;
+  color: #333;
+  text-align: left;
+  font-weight: bold;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px 15px;
+}
+
+.user-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.user-table tbody tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.user-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.user-table thead tr th {
+  color: #333 !important;
+}
+
+/* Nuevos estilos para las etiquetas de estado */
+.estado-tag {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.estado-tag.activo {
+  background-color: #49ce89;
+  color: white;
+}
+
+.estado-tag.inactivo {
+  background-color: #ec6c6c;
+  color: white;
+}
+
+/* Ajuste para alinear las etiquetas en la tabla */
+.user-table td {
+  vertical-align: middle;
 }
