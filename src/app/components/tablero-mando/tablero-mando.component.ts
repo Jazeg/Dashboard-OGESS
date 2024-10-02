@@ -28,6 +28,7 @@ interface Indicador {
   id_componente: number;
   showHistorial?: boolean;
   archivos?: { [key: number]: { nombre: string, archivo: File } };
+  historial?: any;
 }
 
 @Component({
@@ -49,6 +50,27 @@ export class TableroMandoComponent implements OnInit {
 
   ngOnInit() {
     this.cargarComponentes();
+  }
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  get archivosCargados(): number {
+    if (this.indicadorSeleccionado && this.indicadorSeleccionado.archivos) {
+      return Object.keys(this.indicadorSeleccionado.archivos).length;
+    }
+    return 0;
   }
 
   cargarComponentes() {
@@ -92,14 +114,53 @@ export class TableroMandoComponent implements OnInit {
     ).subscribe();
   }
 
+
+
+  
   toggleHistorial(indicador: Indicador) {
     indicador.showHistorial = !indicador.showHistorial;
+    if (indicador.showHistorial && !indicador.historial) {
+      this.cargarHistorialIndicador(indicador);
+    }
   }
 
+  cargarHistorialIndicador(indicador: Indicador) {
+    this.dataService.getAllHistory().pipe(
+      tap((historial: any) => {
+        indicador.historial = historial;
+        console.log('Historial cargado para indicador:', indicador.numero_indicador, historial);
+      }),
+      catchError((error) => {
+        console.error('Error al cargar historial:', error);
+        return of(null);
+      })
+    ).subscribe();
+  }
+
+  
+
   abrirModalArchivo(indicador: Indicador, trimestre: number) {
+    if (this.contarArchivosSubidos(indicador) >= 3) {
+      alert('Ya se han subido 3 archivos para este indicador. No se pueden subir más.');
+      return;
+    }
     this.showModal = true;
     this.trimestreSeleccionado = trimestre;
     this.indicadorSeleccionado = indicador;
+  }
+
+  getArchivosCargados = (): number => {
+    if (this.indicadorSeleccionado && this.indicadorSeleccionado.archivos) {
+      return Object.keys(this.indicadorSeleccionado.archivos).length;
+    }
+    return 0;
+  }
+
+  contarArchivosSubidos(indicador: Indicador): number {
+    if (!indicador || !indicador.archivos) {
+      return 0;
+    }
+    return Object.keys(indicador.archivos).length;
   }
 
   cerrarModal() {
@@ -115,6 +176,12 @@ export class TableroMandoComponent implements OnInit {
 
   guardarArchivo() {
     if (this.indicadorSeleccionado && this.trimestreSeleccionado && this.archivoSeleccionado) {
+      if (this.contarArchivosSubidos(this.indicadorSeleccionado) >= 3) {
+        alert('Ya se han subido 3 archivos para este indicador. No se pueden subir más.');
+        this.cerrarModal();
+        return;
+      }
+  
       if (!this.indicadorSeleccionado.archivos) {
         this.indicadorSeleccionado.archivos = {};
       }
@@ -123,17 +190,26 @@ export class TableroMandoComponent implements OnInit {
         archivo: this.archivoSeleccionado
       };
       
-      // Aquí puedes agregar la lógica para enviar el archivo al servidor
-      // Por ejemplo:
-      // this.dataService.subirArchivo(this.indicadorSeleccionado.id_indicador, this.trimestreSeleccionado, this.archivoSeleccionado).subscribe(
-      //   response => {
-      //     console.log('Archivo subido exitosamente', response);
-      //   },
-      //   error => {
-      //     console.error('Error al subir archivo', error);
-      //   }
-      // );
-
+      const formData = new FormData();
+      formData.append('file', this.archivoSeleccionado);
+      formData.append('indicador_id', this.indicadorSeleccionado.id_indicador.toString());
+      formData.append('trimestre', this.trimestreSeleccionado.toString());
+  
+      this.dataService.uploadFiles(formData).subscribe(
+        response => {
+          console.log('Archivo subido exitosamente', response);
+          // Verificamos que indicadorSeleccionado no sea null antes de llamar al método
+          if (this.indicadorSeleccionado) {
+            this.cargarHistorialIndicador(this.indicadorSeleccionado);
+          } else {
+            console.error('Error: indicadorSeleccionado es null');
+          }
+        },
+        error => {
+          console.error('Error al subir archivo', error);
+        }
+      );
+  
       this.cerrarModal();
     }
   }

@@ -97,4 +97,13 @@ export class DataService {
     getIndicadorPorComponente(id_componente: string): Observable<any> {
       return this.http.get(`${this.apiUrl}/indicadorcomponente/${id_componente}`);
     }
+
+    getAllHistory(): Observable<any> {
+      return this.http.get(`${this.apiUrl}/history`);
+    }
+    
+    getSoloHistory(anio: string): Observable<any> {
+      return this.http.get(`${this.apiUrl}/history/${anio}`);
+    }
+
 }

@@ -76,11 +76,13 @@
                         <tbody>
                           <tr>
                             <td *ngFor="let trimestre of [1, 2, 3, 4]">
-                              <div *ngIf="indicador.archivos && indicador.archivos[trimestre]">
-                                {{ indicador.archivos[trimestre].nombre }}
+                              <div *ngIf="indicador.historial && indicador.historial[trimestre]">
+                                {{ indicador.historial[trimestre].nombre }}
                               </div>
-                              <button class="button is-small is-primary" (click)="abrirModalArchivo(indicador, trimestre)">
-                                {{ indicador.archivos && indicador.archivos[trimestre] ? 'Cambiar' : 'Añadir' }}
+                              <button class="button is-small is-primary" 
+                                      (click)="abrirModalArchivo(indicador, trimestre)"
+                                      [disabled]="getArchivosCargados() >= 3">
+                                {{ indicador.historial && indicador.historial[trimestre] ? 'Cambiar' : 'Añadir' }}
                               </button>
                             </td>
                           </tr>
@@ -115,9 +117,15 @@
           <input class="input" type="file" (change)="onFileSelected($event)">
         </div>
       </div>
+      <p *ngIf="indicadorSeleccionado">
+        Archivos subidos: {{ contarArchivosSubidos(indicadorSeleccionado) }} / 3
+      </p>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success" (click)="guardarArchivo()">Guardar</button>
+      <button class="button is-success" (click)="guardarArchivo()" 
+              [disabled]="!archivoSeleccionado || getArchivosCargados() >= 3">
+        Guardar
+      </button>
       <button class="button" (click)="cerrarModal()">Cancelar</button>
     </footer>
   </div>
