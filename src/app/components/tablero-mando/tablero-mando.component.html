@@ -102,6 +102,21 @@
   </p>
 </section>
 
+
+<div *ngIf="chartData">
+  <app-chart 
+    [chartData]="chartData"
+    [chartOptions]="chartOptions"
+    [chartType]="chartType">
+  </app-chart>
+</div>
+<div *ngIf="!chartData">
+  No hay datos disponibles para graficar.
+</div>
+
+<!-- Añade esto para debug -->
+<pre>{{ chartData | json }}</pre>
+
 <!-- Modal para añadir/cambiar archivo -->
 <div class="modal" [class.is-active]="showModal">
   <div class="modal-background" (click)="cerrarModal()"></div>

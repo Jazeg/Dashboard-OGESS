@@ -45,6 +45,9 @@ export class TableroMandoComponent implements OnInit {
   trimestreSeleccionado: number | null = null;
   indicadorSeleccionado: Indicador | null = null;
   archivoSeleccionado: File | null = null;
+  chartData: any;
+  chartOptions: any;
+  chartType: string = 'bar';
 
   constructor(private dataService: DataService) {}
 
@@ -52,15 +55,58 @@ export class TableroMandoComponent implements OnInit {
     this.cargarComponentes();
   }
 
-
+  cargarDatosIndicador(anio: string): void {
+    this.dataService.getSoloHistory(anio).subscribe({
+      next: (datos) => {
+        if (datos.length > 0) {
+          this.prepararDatosGrafico(datos[0]);
+        } else {
+          console.error('No se encontraron datos para el año especificado');
+          this.prepararDatosGrafico(null);
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar datos del indicador:', error);
+        this.prepararDatosGrafico(null);
+      }
+    });
+  }
   
 
 
+  prepararDatosGrafico(dato: any | null) {
+    const labels = ['Trimestre I', 'Trimestre II', 'Trimestre III', 'Trimestre IV'];
+    const datos = dato ? [dato.trim1, dato.trim2, dato.trim3, dato.trim4].map(v => v ? parseFloat(v) : null) : [];
+    
+    const colores = datos.map((valor: number | null) => {
+      if (valor === null) return 'rgba(200, 200, 200, 0.5)';  // Gris para datos nulos
+      if (valor <= 5) return 'rgba(75, 192, 192, 0.5)';       // Verde
+      if (valor <= 9.99) return 'rgba(255, 206, 86, 0.5)';    // Amarillo
+      return 'rgba(255, 99, 132, 0.5)';                       // Rojo
+    });
 
+    this.chartData = {
+      labels: labels,
+      datasets: [{
+        label: `Indicador ${dato?.num_indicador || ''} - Año ${dato?.anio || ''}`,
+        data: datos,
+        backgroundColor: colores,
+        borderColor: colores.map(color => color.replace('0.5', '1')),
+        borderWidth: 1
+      }]
+    };
 
-
-
-
+    this.chartOptions = {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 11
+        }
+      }
+    };
+    console.log('Datos preparados para el gráfico:', this.chartData);
+  }
 
 
 
